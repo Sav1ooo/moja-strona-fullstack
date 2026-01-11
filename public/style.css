@@ -1,0 +1,175 @@
+
+body{ /* Stylizacja ciała strony */
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding-bottom: 60px; /* Space for the footer */
+  box-sizing: border-box;
+}
+h1,h2 {
+  color:tomato;
+}
+
+.header { /* Nagłówek strony */
+  display:flex;
+  background-color: #181818;
+  justify-content: space-between;
+  align-items: center;
+  position:fixed;
+  width: 100%;
+  left:0px;
+  top:0px;
+  padding: 0 20px;
+  height: 80px;
+  box-sizing: border-box;
+}
+
+.logo { /* Stylizacja logo */
+  margin: 20px;
+  color: tomato;
+  display: flex;
+  cursor:pointer;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover:not(.logo) { /* Efekt hover dla linków w menu z wyjątkiem logo */
+  background-color: #ddd;
+}
+
+.menu ul { /* Stylizacja listy menu */
+ display:flex;
+ gap:10px;
+  list-style: none; /* Usunięcie punktorów listy */
+  padding: 10px;
+  margin:10px;
+  
+}
+
+.menu a { /* Stylizacja linków w menu */
+  text-decoration: none;
+  background-color: tomato;
+  color: white;
+  font-weight: bold;
+  padding: 29px 20px;
+  border-radius: 4px;
+  text-align: center;
+  transition: background-color 0.3s ;
+  display: block;
+}
+.wrapper {
+  display: flex;
+  min-height: calc(100vh - 80px - 60px); /* Pełna wysokość widoku minus header i footer */
+}
+.main-content { /* Główna sekcja zawartości */
+  background-color: #181818;
+  padding-top:100px; /* Dostosuj do wysokości headera */
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  display: flex;
+  width: 100%;
+  flex:1;
+}
+.left-content { /* Lewa strona */
+  background-color: #181818;
+  min-height: 100%;
+}
+
+.right-content{ /* Prawa strona */
+  background-color: #181818;
+}
+#loginForm{ 
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+.left-content, .right-content { /* Stylizacja lewej i prawej strony */
+ width: 300px;
+ padding-top: 100px; /* Dostosuj do wysokości headera */
+ min-height: 100vh;
+}
+
+
+
+.produkty {                   /* Sekcja produktów */
+  display: flex;              /* Użycie flexboxa */
+  flex-wrap: wrap;            /* Zawijanie wierszy */
+  justify-content: center;    /* Wyśrodkowanie produktów */
+  gap: 20px;                  /* Odstępy między produktami */
+  padding: 20px;              /* Wewnętrzne odstępy */
+  background-color: #bbbcb9;  /* Tło sekcji produktów */
+}
+.produkt {
+  width: 200px;   /* Stała szerokość dla każdego produktu */
+  padding: 10px;  /* Wewnętrzne odstępy */
+  background-color: white; /* Tło produktu */
+  border: 1px solid #ccc; /* Obramowanie produktu */
+  flex: 0 0 auto; /* Zapobieganie rozciąganiu */
+  text-align: center; /* Wyśrodkowanie tekstu */
+}
+.produkt img {
+
+  max-width: 100%; /* Obrazek dostosowuje się do szerokości kontenera */
+  height: auto;    /* Zachowanie proporcji obrazka */
+}
+
+.hamburger { /* Ikona hamburgera */
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.menu-open, .menu-close { /* Przycisk otwierający/zamykający menu */
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+
+
+@media(max-width: 750px) {    /* Dla ekranów o szerokości mniejszej niż 750px */
+  .menu-open {
+    display: block;
+  }
+
+  .menu {               /* Stylizacja menu */
+    position: fixed;
+    top: 70px;
+    right: 0;
+    display: none;
+  }
+  
+  .menu ul { /* Stylizacja listy menu */
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: #afabab;
+    width: 200px;
+  }
+}
+#authSection {
+  display: block;
+}
+
+@media(max-width: 750px) {   /* Dla ekranów o szerokości mniejszej niż 750px */
+.wrapper {
+  flex-direction: column;
+  }
+  .left-content, .right-content {
+    width: 100%;
+  }
+}
+.footer { /* Stopka strony */
+  background-color: #d0cecef0;
+  color: #333;
+  position:fixed;
+  bottom:0px;
+  left:0px;
+  padding: 10px 20px;
+  width: 100%; 
+}
