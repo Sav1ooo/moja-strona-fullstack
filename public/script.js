@@ -78,7 +78,9 @@ hamburger.addEventListener('click', showMenu);
            msg.className = response.ok ? 'message' : 'error'; // Ustawienie klasy CSS na podstawie sukcesu lub błędu
             if (response.ok) {
                 // Przekierowanie na stronę dashboard po udanym logowaniu
-                window.location.href = '/dashboard.html'; }
+                localStorage.setItem('token', data.token); 
+                window.location.href = '/dashboard.html'; 
+            }
             } catch (error) {
                 msg.textContent = 'Błąd sieci. Spróbuj ponownie później.';
                 msg.className = 'error';
@@ -108,33 +110,44 @@ hamburger.addEventListener('click', showMenu);
         }
 
            // Sprawdzanie statusu logowania
-           async function checkLogin() {
+        async function checkLogin() {
             const authSection = document.getElementById('authSection');
-            try {
-                 const response = await fetch('/me', {
-                    credentials: 'include',
+            const token = localStorage.getItem('token');
+            // jeśli nie ma tokena -> użytkownik nie jest zalogowany
+            if (!token) {
+                if(authSection) {
+                    authSection.style.display = 'block'; // Pokaż sekcję logowania/rejestracji
+                }
+                return;
+            }
+                try {
+                    const response = await fetch('/api/me',{
+                        headers: {
+                            Authorization: 'Bearer ' + token,
+                        }   
                 });
-                
-                 if(response.ok) {
-                   const data = await response.json();
+                if (response.ok) {
+                    const data = await response.json();
                     console.log('Zalogowany jako:', data.username);
                     if(authSection) {
-                        authSection.style.display = 'none';
+                        authSection.style.display = 'none'; // Ukryj sekcję logowania/rejestracji
                     }
-                 } else { 
-                    // Użytkownik nie zalogowany
+                } else {
+                    localStorage.removeItem('token');
                     if(authSection) {
-                        authSection.style.display = 'block';
+                        authSection.style.display = 'block'; // Pokaż sekcję logowania/rejestracji
                     }
                 }
             } catch (error) {
-                
                 console.error('Błąd podczas sprawdzania statusu logowania:', error);
                 if(authSection) {
-                    authSection.style.display = 'block';
-           }
+                    authSection.style.display = 'block'; // Pokaż sekcję logowania/rejestracji
+                }
             }
         }
+
+                    
+        
         checkLogin();
 
 
